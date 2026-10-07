@@ -83,10 +83,9 @@ public:
 /// handle for the surface, analogous to dd4hep::rec::VolCylinder
 class CaloBarrelCylinder : public dd4hep::rec::VolSurface {
 public:
-  CaloBarrelCylinder(dd4hep::Volume vol, dd4hep::rec::SurfaceType typ, double thickness_inner,
-                     double thickness_outer, dd4hep::rec::Vector3D origin_val)
-      : dd4hep::rec::VolSurface(
-            new CaloBarrelCylinderImpl(vol, typ, thickness_inner, thickness_outer, origin_val)) {}
+  CaloBarrelCylinder(dd4hep::Volume vol, dd4hep::rec::SurfaceType typ, double thickness_inner, double thickness_outer,
+                     dd4hep::rec::Vector3D origin_val)
+      : dd4hep::rec::VolSurface(new CaloBarrelCylinderImpl(vol, typ, thickness_inner, thickness_outer, origin_val)) {}
 
   CaloBarrelCylinderImpl* operator->() { return static_cast<CaloBarrelCylinderImpl*>(_surf); }
 };
@@ -109,8 +108,7 @@ void Installer<UserData>::handle_arguments(int argc, char** argv) {
       else if (name == "systemID")
         data.systemID = value;
       else {
-        printout(dd4hep::WARNING, "k4geo_CaloFaceBarrelCylinderSurfacePlugin", "unknown parameter:  %s ",
-                 name.c_str());
+        printout(dd4hep::WARNING, "k4geo_CaloFaceBarrelCylinderSurfacePlugin", "unknown parameter:  %s ", name.c_str());
       }
     }
   }

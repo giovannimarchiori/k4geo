@@ -102,8 +102,7 @@ void Installer<UserData>::install(dd4hep::DetElement component, dd4hep::PlacedVo
 
   if (data.radius <= 0. || data.zpos <= 0.) {
     printout(dd4hep::ERROR, "k4geo_CaloFaceEndcapDiskSurfacePlugin",
-             "invalid radius (%f) or zpos (%f) for %s: no surface installed", data.radius, data.zpos,
-             component.name());
+             "invalid radius (%f) or zpos (%f) for %s: no surface installed", data.radius, data.zpos, component.name());
     stopScanning();
     return;
   }
