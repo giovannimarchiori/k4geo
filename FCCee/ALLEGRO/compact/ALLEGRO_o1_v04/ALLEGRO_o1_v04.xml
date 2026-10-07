@@ -34,8 +34,8 @@
   <!-- shape based model of the beam pipe -->
   <include ref="../../../MDI/compact/MDI_o1_v00/Beampipe_o4_v05.xml" />
   <include ref="../../../MDI/compact/MDI_o1_v00/BeamInstrumentation_o1_v01.xml" />
-  
-  <!-- In order to use the CAD beampipe, build k4geo with the following CMake option: 
+
+  <!-- In order to use the CAD beampipe, build k4geo with the following CMake option:
   cmake -D INSTALL_BEAMPIPE_STL_FILES=ON which will download the files needed -->
   <!-- engineered CAD model of the beam pipe -->
   <!-- <include ref="../../../MDI/compact/MDI_o1_CADBased_v01/MDI_o1_CADBased_v01_collection.xml" />
@@ -53,6 +53,20 @@
 
   <!-- Include plugins attaching additional info to the geometry and needed to generate edm4hep::TrackerHitPlane, see e.g. CLD detector-concept case https://github.com/key4hep/k4geo/blob/main/FCCee/CLD/compact/CLD_o2_v08/CLD_o2_v08.xml#L333-L390 -->
   <plugins>
+
+    <!-- helper surfaces at the inner face of the ECal, used by the tracking (e.g. ConformalTracking) to extrapolate the tracks to the calorimeter -->
+    <plugin name="k4geo_CaloFaceBarrelCylinderSurfacePlugin">
+      <argument value="ECalBarrel"/>
+      <argument value="length=2.*BarECal_dz"/>
+      <argument value="radius=BarECal_rmin"/>
+      <argument value="systemID=DetID_ECAL_Barrel"/>
+    </plugin>
+    <plugin name="k4geo_CaloFaceEndcapDiskSurfacePlugin">
+      <argument value="EMEC_turbine"/>
+      <argument value="zpos=EMEC_min_z"/>
+      <argument value="radius=EMEC_outer_radius"/>
+      <argument value="systemID=DetID_ECAL_Endcap"/>
+    </plugin>
 
     <plugin name="InstallSurfaceManager"/>
 
